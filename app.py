@@ -1,83 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>讀書計畫 - 新北高中林新恩</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 全站基本樣式 */
+        body {
+            font-family: "微軟正黑體", sans-serif;
+            background: linear-gradient(to bottom right, #f0f4f8, #ffffff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
-from flask import Flask, render_template
+        /* 主容器 */
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
 
-app = Flask(__name__)
+        /* 標題 */
+        h1 {
+            font-size: 28px;
+            color: #1a73e8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-# 建立問答集 Store questions and answers in a simple list for demonstration purposes
-questions_answers = {
-    "蘋果": "apple",
-    "apple": "蘋果",
-    "香蕉": "banana",
-    "banana": "香蕉",
-    "貓": "cat",
-    "cat": "貓",
-    "狗": "dog",
-    "dog": "狗",
-    "書": "book",
-    "book": "書",
-    "桌子": "table",
-    "table": "桌子",
-    "椅子": "chair",
-    "chair": "椅子",
-    "房子": "house",
-    "house": "房子",
-    "汽車": "car",
-    "car": "汽車",
-    "學校": "school",
-    "school": "學校",
-    "老師": "teacher",
-    "teacher": "老師",
-    "學生": "student",
-    "student": "學生",
-    "咖啡": "coffee",
-    "coffee": "咖啡",
-    "茶": "tea",
-    "tea": "茶",
-    "醫生": "doctor",
-    "doctor": "醫生",
-    "護士": "nurse",
-    "sad": "難過"}
+        /* 導覽清單 */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+        nav li {
+            background-color: #e8f0fe;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.3s;
+        }
 
-@app.route('/competition')
-def competition():
-    return render_template('competition.html')
+        nav li:hover {
+            background-color: #d2e3fc;
+            transform: translateX(5px);
+        }
 
-@app.route('/activities')
-def activities():
-    return render_template('activities.html')
+        nav a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #1a237e;
+            font-weight: 500;
+        }
 
-@app.route('/leadership')
-def leadership():
-    return render_template('leadership.html')
+        /* 手機響應式設計 */
+        @media (max-width: 600px) {
+            .container {
+                margin: 30px 16px;
+                padding: 20px;
+            }
 
-@app.route('/club')
-def club():
-    return render_template('club.html')
+            h1 {
+                font-size: 22px;
+            }
 
-@app.route('/electives')
-def electives():
-    return render_template('electives.html')
-
-
-# 網頁/ask的處理
-@app.route('/ask', methods=['GET', 'POST'])
-def ask_question():
-    if request.method == 'POST':
-        q = request.form['question']
-        a = questions_answers[q]
-        return render_template('ask.html', question=q, answer=a)
-    return render_template('ask.html', question="", answer="")
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
-
-@app.route('/ai')
-def ai():
-    return render_template('ai.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
+            nav a {
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>新北高中林新恩 讀書計畫</h1>
+        <nav>
+            <ul>
+                <li><a href="/competition">📚 競賽經驗</a></li>
+                <li><a href="/activities">🎨 課外活動</a></li>
+                <li><a href="/leadership">👥 幹部經驗</a></li>
+                <li><a href="/club">🎯 社團經驗</a></li>
+                <li><a href="/electives">📖 多元選修課程</a></li>
+                <li><a href="/ai">🤖 AI應用</a></li>
+                <li><a href="/ask">🤖 字庫提問</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
